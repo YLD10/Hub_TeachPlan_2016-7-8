@@ -69,17 +69,17 @@ void Topo(Graph1 *G, int *Top, int *count_num1, int *count_num2, int term_num, i
     srand((int)time(NULL)); //调用C语言提供的函数初始化随机数种子
 
     for (i = 0; i < G->V; i ++) //循环图结点个数次，每次找出一个入度为0的图结点录入拓扑序列数组
-            for(j = 0; j < MAX_COURSE; j ++) { //循环足够多次以便能够产生0~图结点-1之间的全部数字
+        for (j = 0; j < MAX_COURSE; j ++) { //循环足够多次以便能够产生0~图结点-1之间的全部数字
             v = rand() % G->V;  //调用C语言提供的随机数函数产生0~图结点数-1之间的随机数
-            if(indegree_copy[v] == 0) { //寻找入度为0的图结点
+            if (indegree_copy[v] == 0) { //寻找入度为0的图结点
                 indegree_copy[v] --;  //把该图结点的入度置为-1，防止该图结点在此被二次遍历
 
                 Top[i] = v; //入度为0的图结点编号，也就是课程编号录入拓扑序列数组
 
-                for(k = 0; k < G->V; k ++) {
-                    if(G->adjMatrix[v][k])  //v 与 K 有关系则进 if
+                for (k = 0; k < G->V; k ++)
+                    if (G->adjMatrix[v][k])  //v 与 K 有关系则进 if
                         indegree_copy[k] --;  //与该图结点关联的顶点的入度递减
-                }
+
                 break;  //一旦拓扑序列数组增加了新成员，就退出本层循环
             }
         }
