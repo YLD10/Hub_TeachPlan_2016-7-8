@@ -35,11 +35,15 @@ void CreateGraph(Graph1 *G, int v_num, int e_num, FILE *fpSca) {
         if (a == MAX_COURSE) { //若 a 值不被上述循环所改变仍为 MAX_COURSE ，则说明找不到此课程
             printf("\nError！%s课程不在本专业开设的课程中！\n", v);
             free(course);   //释放课程信息备份数组所占的内存
+            puts("");   //换行美化
+            system("pause");    //程序暂停
             exit(0);    //退出程序
         }
         if (b == MAX_COURSE) { //若 b 值不被上述循环所改变仍为 MAX_COURSE ，则说明找不到此课程
             printf("\nError！%s课程不在本专业开设的课程中！\n", u);
             free(course);   //释放课程信息备份数组所占的内存
+            puts("");   //换行美化
+            system("pause");    //程序暂停
             exit(0);    //退出程序
         }
 

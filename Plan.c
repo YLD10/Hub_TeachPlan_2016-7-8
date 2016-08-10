@@ -4,11 +4,15 @@
 void ifnFile(FILE **fpPri, FILE **fpSca) {
     if ((*fpSca = fopen("E:\\Data_Struct\\Project design\\Teach plan\\TestScanf.txt", "a+")) == NULL) {    //a+ 表示文件可读可写（文件路径请自定义）
         puts("Can not open the TestScanf.txt !");   //若无法打开数据录入文件，提示错误并退出程序
+        puts("");   //换行美化
+        system("pause");    //程序暂停
         exit(0);    //退出程序
     }
 
     if ((*fpPri = fopen("E:\\Data_Struct\\Project design\\Teach plan\\TestPrintf.txt", "a+")) == NULL) { //a+ 表示文件可读可写（文件路径请自定义）
         puts("Can not open the TestPrintf.txt !");  //若无法打开数据导出文件，提示错误并退出程序
+        puts("");   //换行美化
+        system("pause");    //程序暂停
         exit(0);    //退出程序
     }
 }
@@ -39,19 +43,21 @@ void Scanf(Graph1 *G, int *term_num, float *max_point, int *course_num, int *rel
     printf("\n请输入每个课程的课程号（不超过%d个字符）：", COURSE_ID_LENTH - 1);
     for (i = 0; i < *course_num; i ++) {
         fscanf(fpSca, "%s", course[i].id);  //循环从数据录入文件中依次把字符串类型的课程名称录入备份数组中
+        //scanf("%s", course[i].id);
         printf("%s ", course[i].id);
     }
-        //scanf("%s", course[i].id);
+
     printf("\n请输入以上课程对应的学分：");
     for (i = 0; i < *course_num; i ++) {
         fscanf(fpSca, "%f", &course[i].point);   //循环从数据录入文件中依次把浮点类型的学分录入备份数组中
+        //scanf("%f", &course[i].point);
         printf("%.1f ", course[i].point);
     }
-        //scanf("%f", &course[i].point);
+
     printf("\n请输入以上课程之间的关系总数：");
     fscanf(fpSca, "%d", rela_num);  //从数据录入文件中读取一个整型数据赋予课程间的关系总数
-    printf("%d", *rela_num);
     //scanf("%d", rela_num);
+    printf("%d", *rela_num);
 
     Graph(G,*course_num,*rela_num,fpSca);   //调用图创建函数，并把数据录入文件的指针传进去
 }
@@ -99,6 +105,8 @@ void Topo(Graph1 *G, int *Top, int *count_num1, int *count_num2, int term_num, i
             free(indegree_copy); //释放入度拷贝数组所占的内存
             free(Top_copy); //释放拓扑序列拷贝数组所占的内存
             fclose(fpPri);  //关闭数据导出文件
+            puts("");   //换行美化
+            system("pause");    //程序暂停
             exit(0);    //退出程序
     }
 
@@ -132,6 +140,8 @@ void Topo(Graph1 *G, int *Top, int *count_num1, int *count_num2, int term_num, i
                 free(indegree_copy); //释放入度拷贝数组所占的内存
                 free(Top_copy); //释放原拓扑序列拷贝数组所占的内存
                 fclose(fpPri);  //关闭数据导出文件
+                puts("");   //换行美化
+                system("pause");    //程序暂停
                 exit(0);    //退出程序
             }
         }
@@ -200,11 +210,13 @@ void Sort1(int Top[], Graph1 *G, int term_num, float max_point, int *count_num1,
             if (k < ave) {  //若平均数计数器小于课程平均数
                 if (!previsited[Top[j]] && !bacvisited[Top[j]]) {   //若 Top[j] 所指的课程未被已访问幷查集和伪已访问幷查集染色，则此课程可成为该学期的教学安排的候选
                     if (course[Top[j]].point > max_point) { //若 Top[j] 所指的课程的学分为大于所给的学分上限
-                        printf("\n\nError!学分上限过低，请修改学分上限！\n");  //报错
+                        printf("\n\nError! 学分上限过低，请修改学分上限！\n");  //报错
                         free(G);    //释放图所占的内存
                         free(Top);  //释放拓扑序列数组所占的内存
                         free(course); //释放课程信息备份数组所占的内存
                         fclose(fpPri);  //关闭数据导出文件
+                        puts("");   //换行美化
+                        system("pause");    //程序暂停
                         exit(0);    //退出程序
                     }
                     point_sum += course[Top[j]].point;  //候选的课程的学分求和
@@ -262,6 +274,8 @@ void Sort2(int Top[], Graph1 *G, int term_num, float max_point, int *count_num1,
                     free(Top);  //释放拓扑序列数组所占的内存
                     free(course); //释放课程信息备份数组所占的内存
                     fclose(fpPri);  //关闭数据导出文件
+                    puts("");   //换行美化
+                    system("pause");    //程序暂停
                     exit(0);    //退出程序
                 }
                 point_sum += course[Top[j]].point;  //候选的课程的学分求和

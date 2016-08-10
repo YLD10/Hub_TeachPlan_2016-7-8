@@ -16,7 +16,7 @@ int main()
 
     Scanf(G,&term_num,&max_point,&course_num,&rela_num,fpSca);    //调用数据录入函数
 
-    int *Top = (int *)malloc((course_num) * sizeof(int)); //拓扑序列动态数组初始化
+    int *Top = (int *)malloc(sizeof(int) * course_num); //拓扑序列动态数组初始化
 
     Topo(G,Top,&count_num1,&count_num2,term_num,max_point,fpPri);     //调用拓扑排序函数
 
@@ -27,6 +27,8 @@ int main()
     free(course); //释放课程信息备份数组所占的内存
     fclose(fpSca);  //关闭数据导入文件
     fclose(fpPri);  //关闭数据导出文件
+    puts("");   //换行美化
+    system("pause");    //程序暂停
 
     return 0;   //程序结束
 }
